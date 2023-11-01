@@ -130,7 +130,6 @@ const LogCameraInfo wide_road_camera_info{
 const LogCameraInfo driver_camera_info{
   .thread_name = "driver_cam_encoder",
   .type = DriverCam,
-  .record = false,
   .stream_type = VISION_STREAM_DRIVER,
   .encoder_infos = {main_driver_encoder_info}
 };
@@ -138,7 +137,6 @@ const LogCameraInfo driver_camera_info{
 const LogCameraInfo stream_road_camera_info{
   .thread_name = "road_cam_encoder",
   .type = RoadCam,
-  .record = false,
   .stream_type = VISION_STREAM_ROAD,
   .encoder_infos = {stream_road_encoder_info}
 };
@@ -146,7 +144,6 @@ const LogCameraInfo stream_road_camera_info{
 const LogCameraInfo stream_wide_road_camera_info{
   .thread_name = "wide_road_cam_encoder",
   .type = WideRoadCam,
-  .record = false,
   .stream_type = VISION_STREAM_WIDE_ROAD,
   .encoder_infos = {stream_wide_road_encoder_info}
 };
@@ -154,7 +151,6 @@ const LogCameraInfo stream_wide_road_camera_info{
 const LogCameraInfo stream_driver_camera_info{
   .thread_name = "driver_cam_encoder",
   .type = DriverCam,
-  .record = false,
   .stream_type = VISION_STREAM_DRIVER,
   .encoder_infos = {stream_driver_encoder_info}
 };
