@@ -114,7 +114,6 @@ const EncoderInfo qcam_encoder_info = {
 const LogCameraInfo road_camera_info{
   .thread_name = "road_cam_encoder",
   .type = RoadCam,
-  .record = false,
   .stream_type = VISION_STREAM_ROAD,
   .encoder_infos = {main_road_encoder_info, qcam_encoder_info}
 };
@@ -122,7 +121,6 @@ const LogCameraInfo road_camera_info{
 const LogCameraInfo wide_road_camera_info{
   .thread_name = "wide_road_cam_encoder",
   .type = WideRoadCam,
-  .record = false,
   .stream_type = VISION_STREAM_WIDE_ROAD,
   .encoder_infos = {main_wide_road_encoder_info}
 };
