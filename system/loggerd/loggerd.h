@@ -58,19 +58,21 @@ public:
 const EncoderInfo main_road_encoder_info = {
   .publish_name = "roadEncodeData",
   .filename = "fcamera.hevc",
+  .record = false,
   INIT_ENCODE_FUNCTIONS(RoadEncode),
 };
 
 const EncoderInfo main_wide_road_encoder_info = {
   .publish_name = "wideRoadEncodeData",
   .filename = "ecamera.hevc",
+  .record = false,
   INIT_ENCODE_FUNCTIONS(WideRoadEncode),
 };
 
 const EncoderInfo main_driver_encoder_info = {
   .publish_name = "driverEncodeData",
   .filename = "dcamera.hevc",
-  .record = Params().getBool("RecordFront"),
+  .record = false,
   INIT_ENCODE_FUNCTIONS(DriverEncode),
 };
 
@@ -101,6 +103,7 @@ const EncoderInfo stream_driver_encoder_info = {
 const EncoderInfo qcam_encoder_info = {
   .publish_name = "qRoadEncodeData",
   .filename = "qcamera.ts",
+  .record = false,
   .bitrate = QCAM_BITRATE,
   .encode_type = cereal::EncodeIndex::Type::QCAMERA_H264,
   .frame_width = 526,
@@ -111,6 +114,7 @@ const EncoderInfo qcam_encoder_info = {
 const LogCameraInfo road_camera_info{
   .thread_name = "road_cam_encoder",
   .type = RoadCam,
+  .record = false,
   .stream_type = VISION_STREAM_ROAD,
   .encoder_infos = {main_road_encoder_info, qcam_encoder_info}
 };
@@ -118,6 +122,7 @@ const LogCameraInfo road_camera_info{
 const LogCameraInfo wide_road_camera_info{
   .thread_name = "wide_road_cam_encoder",
   .type = WideRoadCam,
+  .record = false,
   .stream_type = VISION_STREAM_WIDE_ROAD,
   .encoder_infos = {main_wide_road_encoder_info}
 };
@@ -125,6 +130,7 @@ const LogCameraInfo wide_road_camera_info{
 const LogCameraInfo driver_camera_info{
   .thread_name = "driver_cam_encoder",
   .type = DriverCam,
+  .record = false,
   .stream_type = VISION_STREAM_DRIVER,
   .encoder_infos = {main_driver_encoder_info}
 };
@@ -132,6 +138,7 @@ const LogCameraInfo driver_camera_info{
 const LogCameraInfo stream_road_camera_info{
   .thread_name = "road_cam_encoder",
   .type = RoadCam,
+  .record = false,
   .stream_type = VISION_STREAM_ROAD,
   .encoder_infos = {stream_road_encoder_info}
 };
@@ -139,6 +146,7 @@ const LogCameraInfo stream_road_camera_info{
 const LogCameraInfo stream_wide_road_camera_info{
   .thread_name = "wide_road_cam_encoder",
   .type = WideRoadCam,
+  .record = false,
   .stream_type = VISION_STREAM_WIDE_ROAD,
   .encoder_infos = {stream_wide_road_encoder_info}
 };
@@ -146,6 +154,7 @@ const LogCameraInfo stream_wide_road_camera_info{
 const LogCameraInfo stream_driver_camera_info{
   .thread_name = "driver_cam_encoder",
   .type = DriverCam,
+  .record = false,
   .stream_type = VISION_STREAM_DRIVER,
   .encoder_infos = {stream_driver_encoder_info}
 };
