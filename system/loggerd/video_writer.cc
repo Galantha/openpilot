@@ -51,48 +51,7 @@ VideoWriter::VideoWriter(const char *path, const char *filename, bool remuxing, 
 }
 
 void VideoWriter::write(uint8_t *data, int len, long long timestamp, bool codecconfig, bool keyframe) {
-  if (of && data) {
-    size_t written = util::safe_fwrite(data, 1, len, of);
-    if (written != len) {
-      LOGE("failed to write file.errno=%d", errno);
-    }
-  }
 
-  if (remuxing) {
-    if (codecconfig) {
-      if (len > 0) {
-        codec_ctx->extradata = (uint8_t*)av_mallocz(len + AV_INPUT_BUFFER_PADDING_SIZE);
-        codec_ctx->extradata_size = len;
-        memcpy(codec_ctx->extradata, data, len);
-      }
-      int err = avcodec_parameters_from_context(out_stream->codecpar, codec_ctx);
-      assert(err >= 0);
-      err = avformat_write_header(ofmt_ctx, NULL);
-      assert(err >= 0);
-    } else {
-      // input timestamps are in microseconds
-      AVRational in_timebase = {1, 1000000};
-
-      AVPacket pkt;
-      av_init_packet(&pkt);
-      pkt.data = data;
-      pkt.size = len;
-
-      enum AVRounding rnd = static_cast<enum AVRounding>(AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX);
-      pkt.pts = pkt.dts = av_rescale_q_rnd(timestamp, in_timebase, ofmt_ctx->streams[0]->time_base, rnd);
-      pkt.duration = av_rescale_q(50*1000, in_timebase, ofmt_ctx->streams[0]->time_base);
-
-      if (keyframe) {
-        pkt.flags |= AV_PKT_FLAG_KEY;
-      }
-
-      // TODO: can use av_write_frame for non raw?
-      int err = av_interleaved_write_frame(ofmt_ctx, &pkt);
-      if (err < 0) { LOGW("ts encoder write issue len: %d ts: %lld", len, timestamp); }
-
-      av_packet_unref(&pkt);
-    }
-  }
 }
 
 VideoWriter::~VideoWriter() {
