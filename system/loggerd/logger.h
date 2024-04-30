@@ -41,7 +41,7 @@ public:
   inline int segment() const { return part; }
   inline const std::string& segmentPath() const { return segment_path; }
   inline const std::string& routeName() const { return route_name; }
-  inline void write(kj::ArrayPtr<kj::byte> bytes, bool in_qlog) { write(bytes.begin(), bytes.size(), in_qlog); }
+  inline void write(kj::ArrayPtr<kj::byte> bytes, bool in_qlog) { }
   inline void setExitSignal(int signal) { exit_signal = signal; }
 
 protected:
