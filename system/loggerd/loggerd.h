@@ -34,7 +34,7 @@ class EncoderInfo {
 public:
   const char *publish_name;
   const char *filename = NULL;
-  bool record = true;
+  bool record = false;
   int frame_width = -1;
   int frame_height = -1;
   int fps = MAIN_FPS;
@@ -70,7 +70,7 @@ const EncoderInfo main_wide_road_encoder_info = {
 const EncoderInfo main_driver_encoder_info = {
   .publish_name = "driverEncodeData",
   .filename = "dcamera.hevc",
-  .record = Params().getBool("RecordFront"),
+  .record = false,
   INIT_ENCODE_FUNCTIONS(DriverEncode),
 };
 
